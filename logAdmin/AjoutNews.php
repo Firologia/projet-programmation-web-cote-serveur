@@ -3,14 +3,23 @@
     <title>Ajouter une news</title>
     <?php include('../header/linkBootstrap.php'); ?>
 </head>
+<header>
+
+
+    <?php
+    $pagecourante = basename(__FILE__);
+    include ('../header/adminHeader.php');
+    session_start();
+    ?>
+</header>
 <body>
-<div class="containerForm">
+<div class="container">
 <FORM METHOD="post" class="addNewsForm" action="addNewsDB.php" >
-    <p>Titre :<input TYPE="text" NAME="title"></p>
-    <p>Description :<input TYPE="text" NAME="description"></p>
-    <p>Lien : <input TYPE="url" NAME="link"></p>
-    <p>Date de publication : <input TYPE="datetime-local" NAME="pubDate"></p>
-    <p>Catégorie : <select name="category"></p>
+    <p>Titre :<input class="form-control" TYPE="text" NAME="title"></p>
+    <p>Description :<textarea class="form-control" TYPE="text" NAME="description"></textarea></p>
+    <p>Lien : <input class="form-control" TYPE="url" NAME="link"></p>
+    <p>Date de publication : <input class="form-control" TYPE="datetime-local" NAME="pubDate"></p>
+    <p>Catégorie : <select class="form-select" name="category"></p>
             <option value="numerique">Numérique</option>
             <option value="mobileAndTelecom">Mobile & Télécom</option>
             <option value="operationSystem">Systeme exploitation</option>
@@ -27,21 +36,6 @@
 </div>
 </body>
 <footer>
-<?php
-session_start();
 
-if (isset($_GET['deconnexion'])){
-    if ($_GET['deconnexion']==true){
-        session_unset();
-        header("location:../index.php");
-    }
-}
-else if($_SESSION['username'] !== "" && $_SESSION['domain'] !== ""){
-    $username = $_SESSION['username'];
-    $domain = $_SESSION['domain'];
-    echo "Utilisateur : $username <br> Domain : $domain";
-}
-
-?>
 </footer>
 </html>

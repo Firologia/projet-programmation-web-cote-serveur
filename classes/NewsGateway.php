@@ -45,12 +45,12 @@ class NewsGateway
         ));
     }
 
-    public function DeleteNews(string $title)
+    public function DeleteNews(string $link)
     {
 
-        $query = 'DELETE FROM News WHERE title=:title';
+        $query = 'DELETE FROM News WHERE link=:link';
         $this->con->executeQuery($query, array(
-            ':title' => array($title, PDO::PARAM_STR),
+            ':link' => array($link, PDO::PARAM_STR),
         ));
     }
 
