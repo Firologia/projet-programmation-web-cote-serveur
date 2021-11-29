@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>Projet n°2 Flux RSS</title>
-    <link>
+    <?php include('header/linkBootstrap.php'); ?>
 </head>
 
 <body>
@@ -14,8 +14,13 @@
     <article class="listeNews">
         <?php
 
-        $dsn = 'mysql:host=berlin.iut.local'
+        require_once("classes/Connection.php");
+        require_once("classes/News.php");
+        require_once("classes/NewsGateway.php");
+
+
         ?>
+        <a href="logAdmin/logAdmin.php">Admin</a>
     </article>
 </div>
 </body>

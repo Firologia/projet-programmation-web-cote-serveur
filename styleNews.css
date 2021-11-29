@@ -1,0 +1,11 @@
+div.containerForm{
+
+    display: table;
+    width: 100%;
+}
+
+FORM.addNewsForm {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
