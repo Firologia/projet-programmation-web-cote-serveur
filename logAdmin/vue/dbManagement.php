@@ -1,12 +1,12 @@
 <html>
 <head>
     <title>Database management</title>
-    <?php include('../header/linkBootstrap.php'); ?>
+    <?php include('../../header/linkBootstrap.php'); ?>
 </head>
 <header>
     <?php
     $pagecourante = basename(__FILE__);
-    include ('../header/adminHeader.php'); ?>
+    include('../../header/adminHeader.php'); ?>
 </header>
 <body>
 <div class="container">

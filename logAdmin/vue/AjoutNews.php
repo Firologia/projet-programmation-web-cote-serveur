@@ -1,20 +1,20 @@
 <html>
 <head>
     <title>Ajouter une news</title>
-    <?php include('../header/linkBootstrap.php'); ?>
+    <?php include('../../header/linkBootstrap.php'); ?>
 </head>
 <header>
 
 
     <?php
     $pagecourante = basename(__FILE__);
-    include ('../header/adminHeader.php');
+    include('../../header/adminHeader.php');
     session_start();
     ?>
 </header>
 <body>
 <div class="container">
-<FORM METHOD="post" class="addNewsForm" action="addNewsDB.php" >
+<FORM METHOD="post" class="addNewsForm" action="../addNewsDB.php" >
     <p>Titre :<input class="form-control" TYPE="text" NAME="title"></p>
     <p>Description :<textarea class="form-control" TYPE="text" NAME="description"></textarea></p>
     <p>Lien : <input class="form-control" TYPE="url" NAME="link"></p>

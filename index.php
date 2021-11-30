@@ -19,8 +19,38 @@
         require_once("classes/NewsGateway.php");
 
 
+        try {
+            $dsn='mysql:host=berlin.iut.local;dbname=dbjoartzet';
+            $login='joartzet';
+            $mdp='Art20Jor01Zet20Dan20*';
+            $con = new Connection($dsn,$login,$mdp);
+            $tab_de_news = [];
+            $query = 'SELECT * from news';
+            $con->executeQuery($query,array());
+
+            $results = $con->getResults();
+            foreach ($results as $row){
+                $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
+            }
+            require('vueNews.php');
+        }
+        catch(PDOException $e){
+            $dsn="mysql:host=localhost;dbname=dbnews";
+            $login='root';
+            $mdp='achanger';
+            $con = new Connection($dsn,$login,$mdp);
+            $tab_de_news = [];
+            $query = 'SELECT * from news';
+            $con->executeQuery($query,array());
+
+            $results = $con->getResults();
+            foreach ($results as $row){
+                $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
+            }
+            require('vueNews.php');
+        }
         ?>
-        <a href="logAdmin/logAdmin.php">Admin</a>
+        <a href="logAdmin/logAdmin.php">Connexion Admin</a>
     </article>
 </div>
 </body>

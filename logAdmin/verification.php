@@ -15,7 +15,7 @@
             $_SESSION['username'] = $username;
             $_SESSION['domain'] = $_POST['domain'];
             $_SESSION['password'] = $pass;
-            header('Location: dbManagement.php');
+            header('Location: vue/dbManagement.php');
         }catch (PDOException $e){
             header('Location: logAdmin.php?erreur=1'); //user of password false
         }

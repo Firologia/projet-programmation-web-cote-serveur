@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Delete a News </title>
-        <?php include('../header/linkBootstrap.php');
+        <?php include('../../header/linkBootstrap.php');
 
 
         ?>
@@ -9,7 +9,7 @@
     <header>
         <?php
         $pagecourante = basename(__FILE__);
-        include ('../header/adminHeader.php'); ?>
+        include('../../header/adminHeader.php'); ?>
     </header>
     <body>
         <div class="vstack gap-3">
@@ -37,7 +37,7 @@
             </form>
             </div>
             <div class="d-flex">
-                <form method="post" action="delNewsDB.php">
+                <form method="post" action="../delNewsDB.php">
                     <input class="form-control" type="url" name="link">
                     <input class="btn btn-primary mb-3" type="submit" name="supprimer" value="Supprimer">
                     <?php
@@ -53,9 +53,9 @@
             </div>
             <div class="p-2">
             <?php
-                require_once ("../classes/Connection.php");
-                require_once ("../classes/News.php");
-                require_once ('../classes/NewsGateway.php');
+                require_once("../../classes/Connection.php");
+                require_once("../../classes/News.php");
+                require_once('../../classes/NewsGateway.php');
                 session_start();
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
@@ -70,7 +70,7 @@
                 foreach ($results as $row){
                     $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
                 }
-                require('../vueNews.php');
+                require('../../vueNews.php');
 
 
             ?>
