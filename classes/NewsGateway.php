@@ -17,7 +17,7 @@ class NewsGateway
 
     }
 
-    public function FindByCategory(string $category):array
+    public function FindByCategory(string $category)
     {
 
         $query = 'SELECT * FROM NEWS WHERE category=:category';
@@ -45,20 +45,13 @@ class NewsGateway
         ));
     }
 
-    public function DeleteNews(string $link):bool
+    public function DeleteNews(string $link)
     {
-        if (empty($link))return false;
-        try {
-            $query = 'DELETE FROM News WHERE link=:link';
-            $this->con->executeQuery($query, array(
-                ':link' => array($link, PDO::PARAM_STR),
-            ));
-            return true;
-        }catch(PDOException $e){
-            return false;
-        }
-        return false;
 
+        $query = 'DELETE FROM News WHERE link=:link';
+        $this->con->executeQuery($query, array(
+            ':link' => array($link, PDO::PARAM_STR),
+        ));
     }
 
 

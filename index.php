@@ -22,7 +22,7 @@
         try {
             $dsn='mysql:host=berlin.iut.local;dbname=dbjoartzet';
             $login='joartzet';
-            $mdp='Art20Jor01Zet20Dan20*';
+            $mdp='achanger';
             $con = new Connection($dsn,$login,$mdp);
             $tab_de_news = [];
             $query = 'SELECT * from news';
