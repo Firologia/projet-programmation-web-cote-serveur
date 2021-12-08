@@ -34,7 +34,7 @@ class NewsGateway
     public function InsertNews(string $title, string $description, string $link, string $guid, string $pubDate, string $category)
     {
 
-        $query = 'INSERT INTO News VALUES(:title,:description,:link,:guid,:pubDate,:category)';
+        $query = 'INSERT INTO news VALUES(:title,:description,:link,:guid,:pubDate,:category)';
         $this->con->executeQuery($query, array(
             ':title' => array($title, PDO::PARAM_STR),
             ':description' => array($description, PDO::PARAM_STR),
@@ -48,7 +48,7 @@ class NewsGateway
     public function DeleteNews(string $link)
     {
 
-        $query = 'DELETE FROM News WHERE link=:link';
+        $query = 'DELETE FROM news WHERE link=:link';
         $this->con->executeQuery($query, array(
             ':link' => array($link, PDO::PARAM_STR),
         ));

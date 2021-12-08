@@ -70,7 +70,7 @@
                 foreach ($results as $row){
                     $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
                 }
-                require('../../vueNews.php');
+                require('../../view/vueNews.php');
 
 
             ?>

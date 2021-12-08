@@ -11,7 +11,7 @@ $dsn = $_SESSION['domain'];
     {
         $newsGtw = new NewsGateway($dsn,$username,$password);
         $newsGtw->InsertNews($_POST['title'], $_POST['description'], $_POST['link'], $_POST['link'],  $_POST['pubDate'], $_POST['category']);
-        header("Location:AjoutNews.php");
+        header("Location:vue/AjoutNews.php");
     }
 
 ?>
