@@ -26,6 +26,15 @@ class Controller
                     $this->reinit();
                     break;
 
+                case "logAdmin":
+                    require($dir.$vues['logAdmin']);
+                    break;
+
+                case "admin":
+                    if ($this->connexion()){
+                        require($dir.$vues['admin']);
+                    }
+                    else require($dir.$vues['logAdmin']."?erreur=1");
                 default:
                     $dVueErreur[] = "Unexpected Error";
                     require($dir.$vues['error']);
@@ -53,6 +62,31 @@ class Controller
 
         require($dir.$vues['lobby']);
     }
+
+    function connexion() :bool{
+        session_start();
+        if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
+        {
+
+            $username = $_POST['username'];
+            $pass = $_POST['password'];
+            $dsn = $_POST['domain'];
+
+
+            try {
+                $con = new Connection($dsn,$username,$pass);
+                $_SESSION['username'] = $username;
+                $_SESSION['domain'] = $_POST['domain'];
+                $_SESSION['password'] = $pass;
+                return true;
+            }catch (PDOException $e){
+                return false;
+            }
+
+
+
+        }
+}
 
 
 }

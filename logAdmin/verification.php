@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../classes/Connection.php");
+    require_once("../model/Connection.php");
     session_start();
     if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
     {
@@ -23,5 +23,6 @@
 
 
     }
+    else echo 'erreur';
 
 ?>

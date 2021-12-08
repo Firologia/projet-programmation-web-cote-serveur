@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Database management</title>
-    <?php include('../../header/linkBootstrap.php'); ?>
+    <?php global $bootstrap; echo($bootstrap);?>
 </head>
 <header>
     <?php

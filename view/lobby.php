@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>Projet n°2 Flux RSS</title>
-    <?php include('./header/linkBootstrap.php'); ?>
+    <?php global $bootstrap; echo($bootstrap);?>
 </head>
 
 <body>
@@ -14,13 +14,11 @@
     <article class="listeNews">
         <?php
 
-        require_once("./classes/Connection.php");
-        require_once("./classes/News.php");
-        require_once("./classes/NewsGateway.php");
+        global $dsn, $user, $pass;
 
 
         try {
-            global $dsn, $user, $pass;
+
             $con = new Connection($dsn,$user,$pass);
             $tab_de_news = [];
             $query = 'SELECT * from news';
@@ -48,7 +46,7 @@
             require('vueNews.php');
         }
         ?>
-        <a href="logAdmin/logAdmin.php">Connexion Admin</a>
+        <a href="index.php?action=logAdmin">Connexion Admin</a>
     </article>
 </div>
 </body>

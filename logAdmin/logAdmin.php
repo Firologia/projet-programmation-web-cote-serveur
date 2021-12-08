@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8">
-    <?php include('../header/linkBootstrap.php'); ?>
+    <?php global $bootstrap; echo($bootstrap);?>
 </head>
 <body>
 
     <div class="container-md">
-        <form action="verification.php" method="POST" >
+        <form action="index.php?action=admin" method="POST" >
             <div class="mb-3">
                 <h2>Connexion</h2>
                 <p><strong>Veuillez vous connecter pour continuer : </strong></p>
@@ -35,7 +35,7 @@
             </div>
         </form>
     </div>
-<a href="../index.php">retour</a>
+<a href="index.php">retour</a>
 
 </body>
 </html>

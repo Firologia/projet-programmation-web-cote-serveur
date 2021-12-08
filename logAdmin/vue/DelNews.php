@@ -1,10 +1,7 @@
 <html>
     <head>
         <title>Delete a News </title>
-        <?php include('../../header/linkBootstrap.php');
-
-
-        ?>
+        <?php global $bootstrap; echo($bootstrap);?>
     </head>
     <header>
         <?php

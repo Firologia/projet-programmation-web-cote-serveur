@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Ajouter une news</title>
-    <?php include('../../header/linkBootstrap.php'); ?>
+    <?php global $bootstrap; echo($bootstrap);?>
 </head>
 <header>
 
