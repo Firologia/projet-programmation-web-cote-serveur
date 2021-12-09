@@ -35,7 +35,7 @@ class Controller
                     break;
 
                 case "admin":
-                    if ($_SESSION['connected']==false || empty($_SESSION['connected'])) $_SESSION['connected']=$this->connexion();
+                    if (empty($_SESSION['connected'])) $_SESSION['connected']=$this->connexion();
                     if ($_SESSION['connected']){
                         require($dir.$vues['admin']);
                     }
