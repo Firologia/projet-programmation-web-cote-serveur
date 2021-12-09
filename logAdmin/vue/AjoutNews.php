@@ -8,8 +8,7 @@
 
     <?php
     $pagecourante = basename(__FILE__);
-    include('../../header/adminHeader.php');
-    session_start();
+    include(__DIR__.'/../../header/adminHeader.php');
     ?>
 </header>
 <body>

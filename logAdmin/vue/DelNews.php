@@ -6,7 +6,7 @@
     <header>
         <?php
         $pagecourante = basename(__FILE__);
-        include('../../header/adminHeader.php'); ?>
+        include(__DIR__.'/../../header/adminHeader.php'); ?>
     </header>
     <body>
         <div class="vstack gap-3">
@@ -50,10 +50,7 @@
             </div>
             <div class="p-2">
             <?php
-                require_once("../../classes/Connection.php");
-                require_once("../../classes/News.php");
-                require_once('../../classes/NewsGateway.php');
-                session_start();
+
                 $username = $_SESSION['username'];
                 $password = $_SESSION['password'];
                 $dsn = $_SESSION['domain'];
@@ -67,7 +64,7 @@
                 foreach ($results as $row){
                     $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
                 }
-                require('../../view/vueNews.php');
+                require(__DIR__.'/../../view/vueNews.php');
 
 
             ?>

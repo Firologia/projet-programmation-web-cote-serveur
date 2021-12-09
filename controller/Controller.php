@@ -3,7 +3,6 @@
 class Controller
 {
 
-
     function __construct()
     {
         global $dir,$vues, $action; //Pour utiliser les variables globales
@@ -26,17 +25,39 @@ class Controller
                     $this->reinit();
                     break;
 
+                case "reset":       //Lorsque qu'un admin se déconnecte
+                    $this->reinit(); //Reinitialisation
+                    session_destroy(); //destruction de la session
+                    break;
+
                 case "logAdmin":
                     require($dir.$vues['logAdmin']);
                     break;
 
                 case "admin":
-                    if ($this->connexion()){
+                    if ($_SESSION['connected']==false || empty($_SESSION['connected'])) $_SESSION['connected']=$this->connexion();
+                    if ($_SESSION['connected']){
                         require($dir.$vues['admin']);
                     }
-                    else require($dir.$vues['logAdmin']."?erreur=1");
+                    else{
+                        $_REQUEST['erreur']=1;
+                        require($dir.$vues['logAdmin']);
+                    }
+                    break;
+
+                case "addNews":
+                    if ($_SESSION['connected']){
+                        require($dir.$vues['addNews']);
+                    }
+                    break;
+
+                case "delNews":
+                    if ($_SESSION['connected']){
+                        require($dir.$vues['delNews']);
+                    }
+                    break;
                 default:
-                    $dVueErreur[] = "Unexpected Error";
+                    $dVueErreur[] = "Error 404";
                     require($dir.$vues['error']);
             }
 
@@ -59,12 +80,10 @@ class Controller
 
     function reinit() {
         global $dir,$vues;
-
         require($dir.$vues['lobby']);
     }
 
     function connexion() :bool{
-        session_start();
         if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
         {
 
@@ -86,6 +105,7 @@ class Controller
 
 
         }
+        return false;
 }
 
 

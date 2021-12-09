@@ -34,7 +34,7 @@ class Autoload
     {
         global $dir;
         $filename = $class.'.php';
-        $rep =array('model/','./','config/','controller/','header/','logAdmin/');
+        $rep =array('model/','./','config/','controller/','header/','logAdmin/','logAdmin/vue/');
         foreach ($rep as $p){
             $file=$dir.$p.$filename;
             //echo $file;
