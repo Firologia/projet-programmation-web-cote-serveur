@@ -89,13 +89,19 @@ class Controller
 
             $username = $_POST['username'];
             $pass = $_POST['password'];
-            $dsn = $_POST['domain'];
+            if ($_POST['domain'] == 'home'){
+                $dsn="mysql:host=localhost;dbname=dbnews";
+            }
+            else if ($_POST['domain'] == 'iutClermont'){
+                $dsn="mysql:host=berlin.iut.local;dbname=dbjoartzet";
+            }
+            else return false;
 
 
             try {
                 $con = new Connection($dsn,$username,$pass);
                 $_SESSION['username'] = $username;
-                $_SESSION['domain'] = $_POST['domain'];
+                $_SESSION['domain'] = $dsn;
                 $_SESSION['password'] = $pass;
                 return true;
             }catch (PDOException $e){

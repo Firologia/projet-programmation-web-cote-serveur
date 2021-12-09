@@ -20,8 +20,8 @@
                 <br>
                 <label class="form-label"><b>Domaine</b></label>
                 <select class="form-select" name="domain" required>
-                    <option value="mysql:host=berlin.iut.local;dbname=dbjoartzet">IUT de Clermont</option>
-                    <option value="mysql:host=localhost;dbname=dbnews">Home</option>
+                    <option value="iutClermont">IUT de Clermont</option>
+                    <option value="home">Home</option>
                 </select>
                 <br>
                 <input class="btn btn-primary" type="submit" id='submit' value='Connexion' >
