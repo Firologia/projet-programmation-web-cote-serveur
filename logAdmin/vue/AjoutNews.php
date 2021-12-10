@@ -13,7 +13,7 @@
 </header>
 <body>
 <div class="container">
-<FORM METHOD="post" class="addNewsForm" action="../addNewsDB.php" >
+<FORM METHOD="post" class="addNewsForm" action="index.php?action=addingNews" >
     <p>Titre :<input class="form-control" TYPE="text" NAME="title"></p>
     <p>Description :<textarea class="form-control" TYPE="text" NAME="description"></textarea></p>
     <p>Lien : <input class="form-control" TYPE="url" NAME="link"></p>

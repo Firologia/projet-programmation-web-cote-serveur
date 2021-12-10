@@ -34,7 +34,7 @@
             </form>
             </div>
             <div class="d-flex">
-                <form method="post" action="../delNewsDB.php">
+                <form method="post" action="index.php?action=deleteNews">
                     <input class="form-control" type="url" name="link">
                     <input class="btn btn-primary mb-3" type="submit" name="supprimer" value="Supprimer">
                     <?php

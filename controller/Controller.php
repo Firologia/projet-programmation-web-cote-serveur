@@ -5,7 +5,7 @@ class Controller
 
     function __construct()
     {
-        global $dir,$vues, $action; //Pour utiliser les variables globales
+        global $dir,$vues, $action, $con; //Pour utiliser les variables globales
 
         //Démarrage ou reprise d'une session
         session_start();
@@ -17,6 +17,7 @@ class Controller
             if(!empty($_REQUEST["action"])) {
                 $action=$_REQUEST['action'];
             }
+            else session_destroy();
 
             switch ($action) {
 
@@ -56,6 +57,16 @@ class Controller
                         require($dir.$vues['delNews']);
                     }
                     break;
+
+
+                case "deleteNews":
+                    $adminController = new AdminController();
+                    break;
+
+                case "addingNews":
+                    $adminController = new AdminController();
+                    break;
+
                 default:
                     $dVueErreur[] = "Error 404";
                     require($dir.$vues['error']);

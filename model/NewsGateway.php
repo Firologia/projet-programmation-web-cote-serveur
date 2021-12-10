@@ -10,10 +10,10 @@ class NewsGateway
 
     private $con;
 
-    public function __construct($dsn, $user, $mdp)
+    public function __construct(Connection $con)
     {
 
-        $this->con = new Connection($dsn, $user, $mdp);
+        $this->con = $con;
 
     }
 

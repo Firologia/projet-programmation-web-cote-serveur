@@ -14,12 +14,12 @@
     <article class="listeNews">
         <?php
 
-        global $dsn, $user, $pass;
+        global $dsn, $user, $pass, $con;
 
 
         try {
 
-            $con = new Connection($dsn,$user,$pass);
+
             $tab_de_news = [];
             $query = 'SELECT * from news';
             $con->executeQuery($query,array());
