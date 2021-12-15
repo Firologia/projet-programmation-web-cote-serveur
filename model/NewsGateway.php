@@ -17,16 +17,28 @@ class NewsGateway
 
     }
 
-    public function FindByCategory(string $category)
+    public function ShowAllNews():array
     {
+        $tab_de_news = [];
+        $query = 'SELECT * from news';
+        $this->con->executeQuery($query,array());
+        $results = $this->con->getResults();
+        foreach ($results as $row){
+            $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
+        }
+        return $tab_de_news;
+    }
 
-        $query = 'SELECT * FROM NEWS WHERE category=:category';
+    public function FindByCategory(string $category):array
+    {
+        $tab_de_news = [];
+        $query = 'SELECT * FROM news WHERE category=:category';
         $this->con->executeQuery($query, array(
             ':category' => array($category, PDO::PARAM_STR),
         ));
         $results = $this->con->getResults();
         foreach ($results as $row) {
-            $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['pubDate'], $row['category']);
+            $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'] , $row['pubDate'], $row['category']);
         }
         return $tab_de_news;
     }

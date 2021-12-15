@@ -2,11 +2,12 @@
 
 class Controller
 {
-
+    private $newsGateway;
     function __construct()
     {
         global $dir,$vues, $action, $con; //Pour utiliser les variables globales
-
+        $newsGateway = new NewsGateway($con);
+        $this->newsGateway = $newsGateway;
         //Démarrage ou reprise d'une session
         session_start();
 
@@ -31,6 +32,13 @@ class Controller
                     session_destroy(); //destruction de la session
                     break;
 
+                case "showCateg":
+                    $tab_de_news = [];
+                    $tab_de_news = $this->newsGateway->FindByCategory($_POST['categ']);
+
+                    require($dir.$vues['lobby']);
+                    break;
+
                 case "logAdmin":
                     require($dir.$vues['logAdmin']);
                     break;
@@ -49,6 +57,10 @@ class Controller
                 case "addNews":
                     if ($_SESSION['connected']){
                         require($dir.$vues['addNews']);
+                    }
+                    else{
+                        $dVueErreur[] = "Veuillez vous connecter pour aaccéder à cette page";
+                        require($dir.$vues['error']);
                     }
                     break;
 
@@ -91,6 +103,8 @@ class Controller
 
     function reinit() {
         global $dir,$vues;
+        $tab_de_news = [];
+        $tab_de_news = $this->newsGateway->ShowAllNews();
         require($dir.$vues['lobby']);
     }
 
@@ -123,7 +137,7 @@ class Controller
 
         }
         return false;
-}
+    }
 
 
 }

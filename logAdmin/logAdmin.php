@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <?php global $bootstrap; echo($bootstrap);?>
 </head>
+<header>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="index.php" class="btn btn-primary" >Retour accueil</a>
+        </div>
+    </nav>
+</header>
 <body>
 
     <div class="container-md">
@@ -28,14 +35,13 @@
                 <?php
                 if(!empty($_REQUEST["erreur"])){
                     $err = $_REQUEST['erreur'];
-                    if($err==1 || $err==2)
+                    if($err==1)
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
                 }
                 ?>
             </div>
         </form>
     </div>
-<a href="index.php">retour</a>
 
 </body>
 </html>
