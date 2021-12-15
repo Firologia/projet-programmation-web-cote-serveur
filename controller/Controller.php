@@ -34,9 +34,11 @@ class Controller
 
                 case "showCateg":
                     $tab_de_news = [];
-                    $tab_de_news = $this->newsGateway->FindByCategory($_POST['categ']);
-
-                    require($dir.$vues['lobby']);
+                    if ($_POST['categ'] == "none"){ $this->Reinit();}
+                    else {
+                        $tab_de_news = $this->newsGateway->FindByCategory($_POST['categ']);
+                        require($dir.$vues['lobby']);
+                    }
                     break;
 
                 case "logAdmin":
