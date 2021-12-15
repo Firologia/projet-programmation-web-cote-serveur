@@ -45,6 +45,7 @@ class Controller
 
                 case "admin":
                     if (empty($_SESSION['connected'])) $_SESSION['connected']=$this->connexion();
+
                     if ($_SESSION['connected']){
                         require($dir.$vues['admin']);
                     }
@@ -109,33 +110,34 @@ class Controller
     }
 
     function connexion() :bool{
+        global $dir, $vues;
         if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
         {
-
-            $username = $_POST['username'];
-            $pass = $_POST['password'];
-            if ($_POST['domain'] == 'home'){
-                $dsn="mysql:host=localhost;dbname=dbnews";
+            $modelAdmin = new ModelAdmin();
+            $erreur = $modelAdmin->connexion($_POST['username'], $_POST['password']);
+            if ($erreur == 1){
+                $_REQUEST['error'] = 1;
+                require($dir.$vues['logAdmin']);
             }
-            else if ($_POST['domain'] == 'iutClermont'){
-                $dsn="mysql:host=berlin.iut.local;dbname=dbjoartzet";
+            if ($erreur == 2){
+                $_REQUEST['error'] = 2;
+                require($dir.$vues['logAdmin']);
             }
-            else return false;
-
-
-            try {
-                $con = new Connection($dsn,$username,$pass);
-                $_SESSION['username'] = $username;
-                $_SESSION['domain'] = $dsn;
-                $_SESSION['password'] = $pass;
-                return true;
-            }catch (PDOException $e){
-                return false;
+            if ($modelAdmin->isAdmin()) {
+                if ($_POST['domain'] == 'home') {
+                    $dsn = "mysql:host=localhost;dbname=dbnews";
+                } else if ($_POST['domain'] == 'iutClermont') {
+                    $dsn = "mysql:host=berlin.iut.local;dbname=dbjoartzet";
+                } else return false;
+                try {
+                    $con = new Connection($dsn, $_SESSION['login'], $_POST['password']);
+                    $_SESSION['domain'] = $dsn;
+                } catch (PDOException $e) {
+                    return false;
+                }
             }
 
-
-
-        }
+            }
         return false;
     }
 
