@@ -16,6 +16,7 @@
             <form class="d-flex my-auto align-text-center" method="post" action="index.php?action=showCateg" >
                 <label class="form-label me-5"><b>Catégorie:</b></label>
                 <select class="form-select me-5" name="categ">
+                    <option value="none">Aucune</option>
                 <option value="numerique">Numérique</option>
                 <option value="mobileAndTelecom">Mobile & Télécom</option>
                 <option value="operationSystem">Systeme exploitation</option>
