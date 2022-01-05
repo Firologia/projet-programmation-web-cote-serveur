@@ -51,10 +51,7 @@ class Controller
                     if ($_SESSION['connected']){
                         require($dir.$vues['admin']);
                     }
-                    else{
-                        $_REQUEST['erreur']=1;
-                        require($dir.$vues['logAdmin']);
-                    }
+                    
                     break;
 
                 case "addNews":
@@ -112,29 +109,28 @@ class Controller
     }
 
     function connexion() :bool{
-        global $dir, $vues;
+        global $dir, $vues, $con;
         if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
         {
             $modelAdmin = new ModelAdmin();
             $erreur = $modelAdmin->connexion($_POST['username'], $_POST['password']);
             if ($erreur == 1){
-                $_REQUEST['error'] = 1;
+                $_REQUEST['erreur'] = 1;
                 require($dir.$vues['logAdmin']);
             }
             if ($erreur == 2){
-                $_REQUEST['error'] = 2;
+                $_REQUEST['erreur'] = 2;
                 require($dir.$vues['logAdmin']);
             }
             if ($modelAdmin->isAdmin()) {
                 if ($_POST['domain'] == 'home') {
-                    $dsn = "mysql:host=localhost;dbname=dbnews";
+                    $_SESSION['domain'] = "mysql:host=localhost;dbname=dbnews";
                 } else if ($_POST['domain'] == 'iutClermont') {
-                    $dsn = "mysql:host=berlin.iut.local;dbname=dbjoartzet";
+                    $_SESSION['domain'] = "mysql:host=berlin.iut.local;dbname=dbjoartzet";
                 } else return false;
-                try {
-                    $con = new Connection($dsn, $_SESSION['login'], $_POST['password']);
-                    $_SESSION['domain'] = $dsn;
-                } catch (PDOException $e) {
+                try {$userGate = new UserGateway($con);
+                    return true;
+                } catch (PDOException $e) { 
                     return false;
                 }
             }

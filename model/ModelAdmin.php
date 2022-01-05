@@ -2,10 +2,12 @@
 
 class ModelAdmin
 {
+    private $userGate;
+
     public function __construct()
     {
-        global $con;
-        $userGate = new UserGateway();
+        global $con, $user, $pass;
+        $this->userGate = new UserGateway($con);
     }
 
     public function connexion($login, $mdp): int
@@ -17,15 +19,16 @@ class ModelAdmin
             return 1;
         }
 
-        $loginDB = $this->userGate->getLogin($login);
-        $mdpDb = $this->userGate->getMdp($login);
 
-        if (($login == $loginDB) && password_verify($mdp, $mdpDb)) {
+        if ($this->userGate->doContains($login, $mdp)) {
             $_SESSION['role'] = 'admin';
             $_SESSION['login'] = 'login';
+            $_SESSION['username'] = $login; 
+
         } else{
             return 2;
         }
+        return 0;
     }
 
     public function isAdmin(): bool{

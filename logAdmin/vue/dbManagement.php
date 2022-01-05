@@ -13,10 +13,12 @@
     <figure class="text-center">
 <h2>Gestion des News</h2>
         <?php
-        if($_SESSION['username'] !== "" && $_SESSION['domain'] !== ""){
+        if(!empty($_SESSION['username']) && !empty($_SESSION['domain'])){
         $username = $_SESSION['username'];
         $domain = $_SESSION['domain'];
-        echo "<p>User : $username <br> Domain : $domain </p>";
+        $role = $_SESSION['domain'];
+
+        echo "<p>User : $username <br> Domain : $domain <br> role : $role</p>";
         }
         ?>
     </figure>
