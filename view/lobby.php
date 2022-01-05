@@ -17,15 +17,16 @@
                 <label class="form-label me-5"><b>Catégorie:</b></label>
                 <select class="form-select me-5" name="categ">
                     <option value="none">Aucune</option>
-                <option value="numerique">Numérique</option>
-                <option value="mobileAndTelecom">Mobile & Télécom</option>
-                <option value="operationSystem">Systeme exploitation</option>
-                <option value="professional">Professionel</option>
-                <option value="videoGames">Jeux vidéo</option>
-                <option value="videoAudioPhoto">Video & Audio & Photo</option>
-                <option value="cineSerieManga">Cine & Série & Manga</option>
-                <option value="digitalNews">Digital News</option>
-                <option value="specialize">Specialize</option>
+                    <option value="numerique">Numérique</option>
+                    <option value="socialMedia">Réseaux sociaux</option>
+                    <option value="mobileAndTelecom">Mobile & Télécom</option>
+                    <option value="operationSystem">Systeme exploitation</option>
+                    <option value="professional">Professionel</option>
+                    <option value="videoGames">Jeux vidéo</option>
+                    <option value="videoAudioPhoto">Video & Audio & Photo</option>
+                    <option value="cineSerieManga">Cine & Série & Manga</option>
+                    <option value="digitalNews">Digital News</option>
+                    <option value="promo">Offres, Bons plans</option>
                 </select>
                 <button type="submit" class="btn btn-outline-success me-5" >Rechercher</button>
 

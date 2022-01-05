@@ -104,6 +104,7 @@ class Controller
     function reinit() {
         global $dir,$vues;
         $tab_de_news = [];
+        require($dir.$vues['fluxRSS']);
         $tab_de_news = $this->newsGateway->ShowAllNews();
         require($dir.$vues['lobby']);
     }

@@ -51,11 +51,7 @@
             <div class="p-2">
             <?php
 
-                $username = $_SESSION['username'];
-                $password = $_SESSION['password'];
-                $dsn = $_SESSION['domain'];
-
-                $con = new Connection($dsn, $username, $password);
+                global $con;
                 $tab_de_news = [];
                 $query = 'SELECT * from news';
                 $con->executeQuery($query,array());
