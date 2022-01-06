@@ -19,8 +19,6 @@ class ModelAdmin
         if (Validation::validationMdp($mdp) != 1) {
             return 1;
         }
-
-
         if ($this->userGate->doContains($login, $mdp)) {
             return 0;
 

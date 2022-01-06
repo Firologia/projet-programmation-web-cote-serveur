@@ -23,6 +23,7 @@ class User
     public function isAdmin() : bool{
 
         if ($this->role == 1) return true;
+        if ($this->role == 2) return true;
         return false;
     }
 

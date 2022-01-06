@@ -14,7 +14,7 @@
     <FORM METHOD="post" class="addAdminForm" action="index.php?action=addingAdmin" >
         <p>Login :<input class="form-control" TYPE="text" NAME="logNewAdmin"></p>
         <p>Mot de passe:<input class="form-control" TYPE="password" NAME="passNewAdmin"></p>
-        <p>Rôle :<select class="form-select" name="role"></p>
+        <p>Rôle :<select class="form-select" name="roleNewAdmin"></p>
             <option value="0">User</option>
             <option value="1">Admin</option>
         </select>

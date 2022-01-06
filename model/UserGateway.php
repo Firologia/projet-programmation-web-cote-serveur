@@ -13,10 +13,9 @@ class UserGateway
 
     public function doContains(string $login, string $mdp): bool
     {
-        $query = "SELECT * from User WHERE login=:login AND mdp=:mdp";
+        $query = "SELECT * from User WHERE login=:login";
         $this->con->executeQuery($query,array(
             ':login' => array($login, PDO::PARAM_STR),
-            ':mdp' => array($mdp, PDO::PARAM_STR),
         ));
         $results = $this->con->getResults();
 
@@ -24,11 +23,12 @@ class UserGateway
             return FALSE;
         }
         else {
-            global $user;
                 foreach ($results as $row){
-                    $user = new User($row['login'], $row['mdp'], $row['role']);
-
-            }
+                    if (password_verify($mdp, $row['mdp'])){
+                        $user = new User($row['login'], $row['mdp'], $row['role']);
+                    }
+                    else return false;
+                }
             $_SESSION['user'] = $user;
             return TRUE;
         }
@@ -56,11 +56,12 @@ class UserGateway
      */
     public function insertUser(string $login, string $password, int $role){
 
-        $query = 'INSERT INTO User VALUES(:login, :password, :role)';
+        $password = password_hash($password,PASSWORD_DEFAULT);
+        $query = 'INSERT INTO User VALUES(:login, :password, :AdminRole)';
         $this->con->executeQuery($query,array(
             ':login' => array($login, PDO::PARAM_STR),
-            ':mdp' => array($password, PDO::PARAM_STR),
-            ':role' => array($role, PDO::PARAM_INT),
+            ':password' => array($password, PDO::PARAM_STR),
+            ':AdminRole' => array($role, PDO::PARAM_INT),
         ));
     }
 

@@ -38,10 +38,6 @@ class AdminController
                     require($dir.$vues['addNews']);
                     break;
 
-                case "addAdmin":
-                        require($dir.$vues['addAdmin']);
-                    break;
-
                 default:
                     $dVueErreur[] = "Error 404";
                     require($dir.$vues['error']);

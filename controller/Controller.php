@@ -51,6 +51,11 @@ class Controller
                     if ($_SESSION['connected']){
                         require($dir.$vues['admin']);
                     }
+                    else{
+                        $dVueErreur[] = "Vous n'avez pas l'autorisation pour accéder à cette page";
+                        require($dir.$vues['error']);
+
+                    }
                     
                     break;
 
@@ -72,7 +77,7 @@ class Controller
 
 
                 case "deleteNews":
-                    if ($user->isAdmin()){
+                    if ($_SESSION['user']->isAdmin()){
                         $adminController = new AdminController();
                     }
                     else {
@@ -83,7 +88,7 @@ class Controller
                     break;
 
                 case "addingNews":
-                    if ($user->isAdmin()){
+                    if ($_SESSION['user']->isAdmin()){
                         $adminController = new AdminController();
                     }
                     else {
@@ -99,6 +104,12 @@ class Controller
                     else{
                         $dVueErreur[] = "Vous n'avez pas les droits";
                         require($dir.$vues['error']);
+                    }
+                    break;
+
+                case "addingAdmin":
+                    if ($_SESSION['user']->isSuperAdmin()){
+                        $superAdminController = new SuperAdminController();
                     }
                     break;
 
@@ -146,7 +157,7 @@ class Controller
                 $_REQUEST['erreur'] = 2;
                 require($dir.$vues['logAdmin']);
             }
-            if ($user->isAdmin() || $user->isSuperAdmin()) {
+            if ($_SESSION['user']->isAdmin() || $_SESSION['user']->isSuperAdmin()) {
                 if ($_POST['domain'] == 'home') {
                     $_SESSION['domain'] = "mysql:host=localhost;dbname=dbnews";
                 } else if ($_POST['domain'] == 'iutClermont') {
