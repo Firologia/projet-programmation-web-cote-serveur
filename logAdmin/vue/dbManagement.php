@@ -13,12 +13,16 @@
     <figure class="text-center">
 <h2>Gestion des News</h2>
         <?php
-        if(!empty($_SESSION['username']) && !empty($_SESSION['domain'])){
-        $username = $_SESSION['username'];
+        $username = $_SESSION['user']->getLogin();
         $domain = $_SESSION['domain'];
-        $role = $_SESSION['domain'];
+        $role = $_SESSION['user']->userRole();
 
         echo "<p>User : $username <br> Domain : $domain <br> role : $role</p>";
+
+        if($_SESSION['user']->isSuperAdmin()){
+
+            echo '<a class="btn btn-primary btn-sm" href="index.php?action=addAdmin" >Add admin</a> <br> <br>';
+            echo '<a class="btn btn-primary btn-sm" href="index.php?action=reset" >Delete admin</a>';
         }
         ?>
     </figure>

@@ -76,6 +76,18 @@ foreach ($urls as $url){
             case 'piratage' :
                 $category = 'digitalNews';
                 break;
+
+            case 'Jeux Vidéo' :
+                $category = 'videoGames';
+                break;
+
+            case 'Objets Connectés' :
+                $category = 'numerique';
+                break;
+
+            default :
+                $category = 'other';
+                break;
         }
 
         try {

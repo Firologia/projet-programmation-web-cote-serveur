@@ -3,6 +3,7 @@
 class ModelAdmin
 {
     private $userGate;
+    private $user;
 
     public function __construct()
     {
@@ -21,21 +22,20 @@ class ModelAdmin
 
 
         if ($this->userGate->doContains($login, $mdp)) {
-            $_SESSION['role'] = 'admin';
-            $_SESSION['login'] = 'login';
-            $_SESSION['username'] = $login; 
+            return 0;
 
-        } else{
-            return 2;
         }
-        return 0;
+        return 1;
     }
 
     public function isAdmin(): bool{
         if (isset($_SESSION['role']) && isset($_SESSION['login'])){
             return true;
         }
-        else return false;
+        if ($this->user->isAdmin()){
+            return true;
+        }
+        return false;
     }
 
     public function deconnection(){

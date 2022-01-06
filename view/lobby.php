@@ -27,6 +27,7 @@
                     <option value="cineSerieManga">Cine & Série & Manga</option>
                     <option value="digitalNews">Digital News</option>
                     <option value="promo">Offres, Bons plans</option>
+                    <option value="other">Autres</option>
                 </select>
                 <button type="submit" class="btn btn-outline-success me-5" >Rechercher</button>
 

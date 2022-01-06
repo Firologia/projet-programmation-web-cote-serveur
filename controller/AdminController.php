@@ -5,7 +5,7 @@ class AdminController
     private $model;
     function __construct()
     {
-        global $dir, $vues, $action, $con;
+        global $dir, $vues, $action, $con, $user;
         $this->model = new NewsGateway($con);
 
 
@@ -36,6 +36,10 @@ class AdminController
                 case "addingNews":
                     $this->addNews();
                     require($dir.$vues['addNews']);
+                    break;
+
+                case "addAdmin":
+                        require($dir.$vues['addAdmin']);
                     break;
 
                 default:

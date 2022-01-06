@@ -5,7 +5,7 @@ class Controller
     private $newsGateway;
     function __construct()
     {
-        global $dir,$vues, $action, $con; //Pour utiliser les variables globales
+        global $dir,$vues, $action, $con, $user; //Pour utiliser les variables globales
         $newsGateway = new NewsGateway($con);
         $this->newsGateway = $newsGateway;
         //Démarrage ou reprise d'une session
@@ -72,11 +72,34 @@ class Controller
 
 
                 case "deleteNews":
-                    $adminController = new AdminController();
+                    if ($user->isAdmin()){
+                        $adminController = new AdminController();
+                    }
+                    else {
+                        $dVueErreur[] = "Veuillez vous connecter pour aaccéder à cette page";
+                        require($dir.$vues['error']);
+                    }
+
                     break;
 
                 case "addingNews":
-                    $adminController = new AdminController();
+                    if ($user->isAdmin()){
+                        $adminController = new AdminController();
+                    }
+                    else {
+                        $dVueErreur[] = "Veuillez vous connecter pour aaccéder à cette page";
+                        require($dir.$vues['error']);
+                    }
+                    break;
+
+                case "addAdmin":
+                    if ($_SESSION['user']->isSuperAdmin()){
+                        require($dir.$vues['addAdmin']);
+                    }
+                    else{
+                        $dVueErreur[] = "Vous n'avez pas les droits";
+                        require($dir.$vues['error']);
+                    }
                     break;
 
                 default:
@@ -110,7 +133,7 @@ class Controller
     }
 
     function connexion() :bool{
-        global $dir, $vues, $con;
+        global $dir, $vues, $con, $user;
         if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['domain']))
         {
             $modelAdmin = new ModelAdmin();
@@ -123,7 +146,7 @@ class Controller
                 $_REQUEST['erreur'] = 2;
                 require($dir.$vues['logAdmin']);
             }
-            if ($modelAdmin->isAdmin()) {
+            if ($user->isAdmin() || $user->isSuperAdmin()) {
                 if ($_POST['domain'] == 'home') {
                     $_SESSION['domain'] = "mysql:host=localhost;dbname=dbnews";
                 } else if ($_POST['domain'] == 'iutClermont') {
@@ -131,7 +154,7 @@ class Controller
                 } else return false;
                 try {$userGate = new UserGateway($con);
                     return true;
-                } catch (PDOException $e) { 
+                } catch (PDOException $e) {
                     return false;
                 }
             }

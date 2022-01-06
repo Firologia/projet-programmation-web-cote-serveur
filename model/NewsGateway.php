@@ -20,12 +20,13 @@ class NewsGateway
     public function ShowAllNews():array
     {
         $tab_de_news = [];
-        $query = 'SELECT * from news';
+        $query = 'SELECT * from news ORDER BY pubDate';
         $this->con->executeQuery($query,array());
         $results = $this->con->getResults();
         foreach ($results as $row){
             $tab_de_news[] = new News($row['title'], $row['description'], $row['link'], $row['guid'], $row['pubDate'], $row['category']);
         }
+        $tab_de_news = array_reverse($tab_de_news, true);
         return $tab_de_news;
     }
 
@@ -42,6 +43,10 @@ class NewsGateway
         }
         return $tab_de_news;
     }
+
+    /*
+     * la fonction InsertNews permet l'insertion d'une nouvelle News.
+     */
 
     public function InsertNews(string $title, string $description, string $link, string $guid, string $pubDate, string $category)
     {

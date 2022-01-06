@@ -32,6 +32,7 @@ $vues['addNews']='logAdmin/vue/AjoutNews.php';
 $vues['delNews']='logAdmin/vue/DelNews.php';
 $vues['admin']='logAdmin/vue/dbManagement.php';
 $vues['fluxRSS']='config/fluxRSS.php';
+$vues['addAdmin']='logAdmin/vue/addAdmin.php';
 
 
 ?>
